@@ -241,7 +241,7 @@ function isPrime(n) {
  */
 function toNumber(value, def) {
   const valueNum = +value;
-  if (Object.getPrototypeOf(valueNum) === Number.prototype && !Number.isNaN(valueNum)) {
+  if (!Number.isNaN(valueNum)) {
     return valueNum;
   } return def;
 }
