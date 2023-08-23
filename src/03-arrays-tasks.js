@@ -527,12 +527,17 @@ function distinct(arr) {
  *   }
  */
 function group(array, keySelector, valueSelector) {
-  const map = new Map();
-  const key = array.map(keySelector);
-  const value = array.map(valueSelector);
-  map.set(key, value);
-}
+  return array.reduce((resultMap, item) => {
+    const key = keySelector(item);
+    const value = valueSelector(item);
 
+    if (!resultMap.has(key)) {
+      resultMap.set(key, []);
+    }
+    resultMap.get(key).push(value);
+    return resultMap;
+  }, new Map());
+}
 
 /**
  * Projects each element of the specified array to a sequence
